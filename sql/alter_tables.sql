@@ -1,0 +1,95 @@
+--PRIMARY KEYS FOR TABLE MOVIE
+ALTER TABLE movie
+ADD CONSTRAINT movie_pk
+PRIMARY KEY (id); 
+
+--PRIMARY KEYS FOR TABLE GENRE
+ALTER TABLE genre
+ADD CONSTRAINT genre_pk
+PRIMARY KEY (id,name);
+
+--PRIMARY KEYS FOR TABLE PRODUCTIONCOMPANY
+ALTER TABLE productioncompany
+ADD CONSTRAINT productioncompany_pk
+PRIMARY KEY (id,name);
+
+--PRIMARY KEYS FOR TABLE COLLECTION
+ALTER TABLE collection
+ADD CONSTRAINT collection_pk
+PRIMARY KEY (id,name);
+
+--PRIMARY KEYS FOR TABLE MOVIE_CAST
+ALTER TABLE movie_cast
+ADD CONSTRAINT movie_cast_pk
+PRIMARY KEY (cid,movie_id);
+
+--PRIMARY KEYS FOR TABLE MOVIE_CREW
+ALTER TABLE movie_crew
+ADD CONSTRAINT movie_crew_pk
+PRIMARY KEY (cid,movie_id);
+
+--PRIMARY KEYS FOR TABLE KEYWORD
+ALTER TABLE Keyword
+ADD CONSTRAINT Keyword_pk
+PRIMARY KEY (id,name);
+
+--FOREIGN KEYS FOR TABLE BELONGSTOCOLLECTION
+ALTER TABLE belongsTocollection
+ADD CONSTRAINT FK_movieid FOREIGN
+KEY (movie_id)
+REFERENCES movie(id);
+
+--FOREIGN KEYS FOR TABLE HASGENRE
+ALTER TABLE hasGenre
+ADD CONSTRAINT FK_movieidG FOREIGN
+KEY (movie_id)
+REFERENCES movie(id);
+
+--FOREIGN KEYS FOR TABLE HASPRODUCTIONCOMPANY
+ALTER TABLE hasProductioncompany
+ADD CONSTRAINT FK_movieidP FOREIGN
+KEY (movie_id)
+REFERENCES movie(id);
+
+--FOREIGN KEYS FOR TABLE RATINGS
+ALTER TABLE ratings
+ADD CONSTRAINT FK_movieidR FOREIGN
+KEY (movie_id)
+REFERENCES movie(id);
+
+--FOREIGN KEYS FOR TABLE MOVIECAST
+ALTER TABLE movie_cast
+ADD CONSTRAINT FK_movieidMCA FOREIGN
+KEY (movie_id)
+REFERENCES movie(id);
+
+--FOREIGN KEYS FOR TABLE MOVIECREW
+ALTER TABLE movie_crew
+ADD CONSTRAINT FK_movieidMCR FOREIGN
+KEY (movie_id)
+REFERENCES movie(id);
+
+--PRIMARY KEYS FOR TABLE hasGenre
+ALTER TABLE hasGenre
+ADD CONSTRAINT hasGenre_pk
+PRIMARY KEY (movie_id, genre_id);
+
+--PRIMARY KEYS FOR TABLE hasKeyword
+ALTER TABLE hasKeyword
+ADD CONSTRAINT hasKeyword_pk
+PRIMARY KEY (movie_id, keyword_id);
+
+--PRIMARY KEYS FOR TABLE belongsTocollection
+ALTER TABLE belongsTocollection
+ADD CONSTRAINT belongsTocollection_pk
+PRIMARY KEY (movie_id, collection_id);
+
+--PRIMARY KEYS FOR TABLE hasProductioncompany
+ALTER TABLE hasProductioncompany
+ADD CONSTRAINT hasProductioncompany_pk
+PRIMARY KEY (movie_id, pc_id);
+
+--PRIMARY KEYS FOR TABLE ratings
+ALTER TABLE ratings
+ADD CONSTRAINT ratings_pk
+PRIMARY KEY (movie_id, user_id);
